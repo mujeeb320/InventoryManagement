@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#" th:href="@{/}">Add Product</a>
+            <br><br>
+            <ul>
+                <li><a th:href="@{/admin/loadHome}">Home</a></li>
+
+                <li><a th:href="@{/user/registerSupplier}">Add New Supplier</a></li>
+
+                <li><a class="active" th:href="@{/admin/listEditDeleteSuppliers}">View Suppliers</a></li>
+
+                <li><a th:href="@{#}">Edit My Products</a></li>
+                <li class="nav-item" sec:authority="isAuthenticated()">
+                    <a class="nav-link"  th:href="@{/logout}">
+                        <i class="menu-icon mdi mdi-restart"></i>
+                        <span class="menu-title">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br><br><br><br><br>
+
+            <!-- success message -->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">you have successfully added a product!!</div>
+            </div>
+
+
+            <h1>Add Product to Supplier</h1>
+            <div th:object="${supplierReg}">
+                <div class="form-group">
+                    <label class="control-label" for="firstName"> Supplier First Name </label>
+                    <input id="first" type="text" disabled class="form-control" th:field="*{supplier.firstName}"
+                           required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="firstName"> Supplier Last Name </label>
+                    <input id="last" type="text"disabled class="form-control" th:field="*{supplier.lastName}"
+                           required autofocus="autofocus" />
+                </div>
+            </div>
+            <form th:action="@{/product/saveProductToSupplier}" method="post" th:object="${supplierReg}">
+                <input class="hidden" th:field="*{supplierID}">
+                <div class="form-group">
+                    <label class="control-label" for="firstName"> Name </label>
+                    <input id="firstName" class="form-control" th:field="*{name}"
+                           required autofocus="autofocus" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="lastName"> Price </label> <input
+                        id="lastName" class="form-control" th:field="*{price}"
+                        required autofocus="autofocus" />
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" align="center" class="btn btn-success">Add Supplier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

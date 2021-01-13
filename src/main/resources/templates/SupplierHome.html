@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Supplier Home</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#" th:href="@{/}">Supplier Module</a>
+            <br><br>
+            <ul>
+                <li><a class="active" th:href="@{/supplier/loadHome}">Home</a></li>
+
+                <li><a th:href="@{/product/loadProductForm}">Add New Product</a></li>
+
+                <li><a th:href="@{/product/viewproducts}">View All Products</a></li>
+
+                <li><a th:href="@{#}">Edit My Products</a></li>
+
+                <li class="nav-item" sec:authority="isAuthenticated()">
+                    <a class="nav-link"  th:href="@{/logout}">
+                        <i class="menu-icon mdi mdi-restart"></i>
+                        <span class="menu-title">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br><br><br>
+
+<div class = "form-container" align="center">
+
+
+    <h1>View My Products List</h1>
+
+    <table border="1" class="table">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Quantity</th>
+            <th>Product Price</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.price}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
