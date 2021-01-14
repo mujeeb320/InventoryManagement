@@ -4,6 +4,7 @@ import EEA.InventoryManagement.DTO.ProductReg;
 import EEA.InventoryManagement.DTO.SupplierReg;
 import EEA.InventoryManagement.Entity.Product;
 import EEA.InventoryManagement.Entity.Supplier;
+import EEA.InventoryManagement.Entity.User;
 import EEA.InventoryManagement.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
@@ -45,6 +46,10 @@ public class ProductService implements ProductServiceInterface{
     @Override
     public Product getByID(int id) {
         return productRepository.getOne(id);
+    }
+    @Override
+    public Product findId(int id) {
+        return productRepository.findByUserId(id);
     }
 
     @Override

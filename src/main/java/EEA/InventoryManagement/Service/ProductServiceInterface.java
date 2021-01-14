@@ -15,6 +15,8 @@ public interface ProductServiceInterface {
 
     Product getByID(int id);
 
+    Product findId(int id);
+
     void deleteProduct(int id);
 
     void saveProductToSupplier(ProductReg productReg);
