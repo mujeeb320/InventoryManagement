@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>View All Suppliers</title>
+    <title>Update Employee</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -21,10 +21,10 @@
     <div class="container">
         <div class="navbar-header">
 
-            <a class="navbar-brand" href="#" th:href="@{/}">Admin Module</a>
-<br><br>
+            <a class="navbar-brand" href="#" th:href="@{/}">Update Employee</a>
+            <br><br>
             <ul>
-                <li><a class="active" th:href="@{/admin/loadHome}">Home</a></li>
+                <li><a th:href="@{/admin/loadHome}">Home</a></li>
 
                 <li><a th:href="@{/user/registerAdmin}">Add Admin</a></li>
 
@@ -32,21 +32,19 @@
 
                 <li><a th:href="@{/employee/registerEmployee}">Add Employee</a></li>
 
-                <li><a th:href="@{/storage/loadStorage}">Add Storage</a></li>
-
                 <li><a th:href="@{/admin/listEditDeleteSuppliers}">View Suppliers</a></li>
 
                 <li><a th:href="@{/admin/viewAllAdmins}">View Admins</a></li>
 
                 <li><a th:href="@{/admin/viewAllEmployees}">View Employees</a></li>
 
-<!--                <li><a th:href="@{/admin/viewAllProducts}">View Products</a></li>-->
+                <li><a th:href="@{/admin/viewAllProducts}">View Products</a></li>
+
 
                 <li class="nav-item" sec:authority="isAuthenticated()">
                     <a class="nav-link"  th:href="@{/logout}">
                         <i class="menu-icon mdi mdi-restart"></i>
                         <span class="menu-title">Logout</span>
-
                     </a>
                 </li>
             </ul>
@@ -54,36 +52,34 @@
     </div>
 </nav>
 
-<div th:if="${param.success}">
-    <br><br><br><br><br><div class="alert alert-info">Added Successfully!</div>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br><br><br><br><br>
+            <!-- success message -->
+            <div th:if="${param.success}">
+                <br><br><br><br><br><div class="alert alert-info">You've successfully Updated!</div>
+            </div>
+
+
+            <form  th:action="@{/storage/getStorageSupplier}" th:object="${storageReg}"  method="POST">
+
+                <div class="form-group">
+                    <input  class="hidden" th:field="*{storageID}"/>
+                    <label class="control-label" for="supplierID"> Supplieeeeeeeeerrrrrrrrrrrrr ID:  </label>
+                    <input id="supplierID" class="form-control" th:field="*{supplierID}"
+                           required autofocus="autofocus" />
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" align="center" class="btn btn-success">Add Supplier to Storage</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </div>
-<div th:if="${param.failure}">
-    <br><br><br><br><br><div class="alert alert-info">Failed Operation!</div>
-</div>
-<div class = "form-container" align="center">
-
-
-    <h1>Users List</h1>
-    <table class ="table" border="1">
-        <thead>
-        <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.userID}"></td>
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.username}"></td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-
 </body>
 </html>

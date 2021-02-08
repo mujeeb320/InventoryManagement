@@ -32,4 +32,12 @@ public class Supplier implements Serializable {
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Product.class)
     private List<Product> productList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "supplier_storage",
+            joinColumns = @JoinColumn(name = "supplierID"),
+            inverseJoinColumns = @JoinColumn(name = "storageID"))
+    List<Storage> storageList;
+
 }

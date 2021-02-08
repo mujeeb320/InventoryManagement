@@ -28,9 +28,9 @@
 
                 <li><a th:href="@{/product/loadProductForm}">Add New Product</a></li>
 
-                <li><a th:href="@{/product/viewproducts}">View All Products</a></li>
+                <li><a th:href="@{/product/listProducts}">View All Products</a></li>
 
-                <li><a th:href="@{#}">Edit My Products</a></li>
+                <li><a th:href="@{#}">View My Products</a></li>
 
                 <li class="nav-item" sec:authority="isAuthenticated()">
                     <a class="nav-link"  th:href="@{/logout}">
